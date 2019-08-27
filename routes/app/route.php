@@ -12,8 +12,7 @@ class Route{
     }
     public function initRoutes(){
         $this->routes['/'] = array('controllers'=>'indexController','action'=>'indexFunction');
-        $this->routes['/lista'] = array('controllers'=>'indexController','action'=>'lista');
-        $this->routes['/conteudo'] = array('controllers'=>'indexController','action'=>'conteudo');
+        $this->routes['/chat'] = array('controllers'=>'indexController','action'=>'chatFunction');
     }
     protected function run($url){
         if(array_key_exists($url,$this->routes)){
