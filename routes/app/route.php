@@ -20,7 +20,7 @@ class Route{
             $controllers = new $class;
             $action = $this->routes[$url]['action'];
             $controllers->$action();
-        }else echo 'rota nao existente';
+        }else echo 'Rota nao existente';
     }
     public function getURL(){
         return parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);

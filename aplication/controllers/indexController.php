@@ -6,7 +6,7 @@ class indexController{
 
     const dir_template = 'aplication//templates//';
     const dir_view = 'aplication//views//index//';
-    const template_view = 'template.php';
+    const template_view = 'inicio.php';
     protected $view;
     protected $cdn_js_view;
     protected $cdn_css_view;
