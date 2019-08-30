@@ -49,3 +49,9 @@
     margin-left: 0px;
     margin-right: 0px;
 }
+.not-padding-left{
+    padding-left: 0px !important;
+}
+.not-padding-right{
+    padding-right: 0px !important;
+}

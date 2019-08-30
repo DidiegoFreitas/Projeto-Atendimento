@@ -2,34 +2,21 @@
 
 namespace aplication\Controllers;
 
-class indexController{
+//echo '<pre>';
+//var_dump($_SESSION);
+class loginController{
 
-    const dir_template = 'aplication//templates//';
-    const dir_view = 'aplication//views//index//';
-    const template_view = 'inicio.php';
-    protected $view;
-    protected $cdn_js_view;
-    protected $cdn_css_view;
-
-    private $title_page = 'Inicio';
-    private $header;
-    private $footer;
-    
-    public function get_title_page(){
-        return $this->title_page;
-    }
     public function indexFunction(){
-        $this->render('index.php',self::template_view,true);
-    }
+        include 'aplication//views//login//index.php';
 
+        //$this->render('index.php',self::template_view,true);
+    }
+/*
     public function chatFunction(){
-        $this->header = 'aplication//templates//header.php';
-        $this->footer = 'aplication//templates//footer.php';
-        include 'aplication//views//index//chat.php';
+        $this->render('chat.php',self::template_view,true);
     }
     public function sendFunction(){
-        //var_dump('teste');
-        
+        var_dump('teste');
     }
 
     public function content_cdn(){
@@ -57,4 +44,5 @@ class indexController{
         }
         include self::dir_template . $template;
     }
+    */
 }
