@@ -12,10 +12,10 @@ CREATE TABLE IF NOT EXISTS permissao (
 
 DROP TABLE IF EXISTS usuario;
 CREATE TABLE IF NOT EXISTS usuario (
-    id INT(11),
+    id INT(11) AUTO_INCREMENT,
     nome VARCHAR(30) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    senha VARCHAR(10) NOT NULL,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    senha VARCHAR(32) NOT NULL,
     telefone VARCHAR(15),
     id_permissao INT(11) NOT NULL,
     PRIMARY KEY (id),
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS chamados (
     data_inicio TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     data_fim TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY fk_chamados_cliente (id_cliente) REFERENCES cliente(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY fk_chamados_cliente (id_cliente) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY fk_chamados_relacionamentos (id_relacionamento) REFERENCES relacionamentos(id) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY fk_chamados_user_open (id_user_open) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE RESTRICT,
     FOREIGN KEY fk_chamados_user_current (id_user_current) REFERENCES usuario(id) ON UPDATE CASCADE ON DELETE RESTRICT

@@ -1,1 +1,8 @@
-<?php include_once "routes/app/route.php";
+<?php 
+
+define( 'WWW_ROOT' , dirname(__FILE__));
+define( 'DS' , DIRECTORY_SEPARATOR);
+
+require_once(WWW_ROOT . DS . 'autoload.php');
+
+include_once "routes/app/route.php";

@@ -1,9 +1,8 @@
 <?php
 
-namespace aplication\Controllers;
+namespace aplication\controllers;
 
 class indexController{
-
     const dir_template = 'aplication//templates//';
     const dir_view = 'aplication//views//index//';
     const template_view = 'inicio.php';
@@ -18,7 +17,7 @@ class indexController{
     public function get_title_page(){
         return $this->title_page;
     }
-    public function indexFunction(){
+    public function inicial(){
         $this->render('index.php',self::template_view,true);
     }
 

@@ -56,7 +56,7 @@ a{
     font-size: 18px;
 }
 .login-info-box{
-    width:30%;
+    width:40%;
     padding:0 50px;
     top:20%;
     left:0;
@@ -66,7 +66,7 @@ a{
 .register-info-box{
     width:40%;
     padding:0 50px;
-    top:30%;
+    top:20%;
     right:0;
     position:absolute;
     text-align:left;
@@ -85,17 +85,22 @@ a{
     text-align:left;
     padding:50px;
 }
+.register-show{
+    padding-top: 15px;
+}
 .show-log-panel{
     display:block;
     opacity:0.9;
 }
-.login-show input[type="text"], .login-show input[type="password"]{
+.login-show input[type="text"], 
+.login-show input[type="password"]{
     width: 100%;
     display: block;
     margin:20px 0;
     padding: 15px;
     border: 1px solid #b5b5b5;
     outline: none;
+    margin-bottom: 0px;
 }
 .login-show input[type="button"] {
     max-width: 150px;
@@ -108,18 +113,21 @@ a{
     border-radius: 2px;
     float:right;
     cursor:pointer;
+    margin-top: 15px;
 }
 .login-show a{
     display:inline-block;
     padding:10px 0;
 }
-.register-show input[type="text"], .register-show input[type="password"]{
+.register-show input[type="text"], 
+.register-show input[type="password"]{
     width: 100%;
     display: block;
     margin:20px 0;
     padding: 15px;
     border: 1px solid #b5b5b5;
     outline: none;
+    margin-bottom: 0px;
 }
 .register-show input[type="button"] {
     max-width: 150px;
@@ -132,6 +140,7 @@ a{
     border-radius: 2px;
     float:right;
     cursor:pointer;
+    margin-top: 15px;
 }
 .credit {
     position:absolute;
@@ -150,4 +159,20 @@ a{
 a{
   text-decoration:none;
   color:#2c7715;
+}
+.div_error_individual{
+    display: none;
+    color:red;
+    height: 0px;
+    padding-left: 10px;
+}
+.div_error_individual.show{
+    display: block;
+}
+.error{
+    border-color: red !important;
+}
+.container-login{
+    position: relative;
+    top: 50%;
 }

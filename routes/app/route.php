@@ -2,12 +2,10 @@
 session_start();
 ob_start();
 
-include 'aplication/controllers/indexController.php';
-include 'aplication/controllers/loginController.php';
-
 $route = new Route;
 
 class Route{
+
     private $routes;
     private $routes_authentication;
 
@@ -15,13 +13,21 @@ class Route{
         $this->initRoutes();
         $this->run($this->getURL());
     }
-    public function initRoutes(){
-        $this->routes['/'] = array('controllers'=>'indexController','action'=>'indexFunction');
-        //$this->routes['/chat'] = array('controllers'=>'indexController','action'=>'chatFunction');
 
-        $this->routes_authentication['/chat'] = array('controllers'=>'indexController','action'=>'chatFunction');
+    public function initRoutes(){
+        $this->routes['/'] = array('controllers'=>'indexController','action'=>'inicial');
+        $this->routes['/login'] = array('controllers'=>'loginController','action'=>'autenticacao');
+        $this->routes['/login/cadastro'] = array('controllers'=>'loginController','action'=>'cadastro');
+        $this->routes['/login/verificacao'] = array('controllers'=>'loginController','action'=>'verificacao');
+
+        $this->routes_authentication['/chat'] = array('controllers'=>'chatController','action'=>'index');
     }
+
     protected function run($url){
+        if($url == '/logout'){
+            unset($_SESSION['usuario']);
+            header('Location: /login');
+        }
         if(array_key_exists($url,$this->routes)){
             $class = "\\aplication\\controllers\\".$this->routes[$url]['controllers'];
             $controllers = new $class;
@@ -29,23 +35,17 @@ class Route{
             $controllers->$action();
         }
         else if(array_key_exists($url,$this->routes_authentication)){
-            /*if(count($_SESSION)>0){
+            if(isset($_SESSION['usuario'])){
                 $class = "\\aplication\\controllers\\".$this->routes_authentication[$url]['controllers'];
                 $controllers = new $class;
                 $action = $this->routes_authentication[$url]['action'];
                 $controllers->$action();
-            }else{
-                */
-                $_SESSION['usuario']=array('id'=>1,'nome'=>'Diego');
-                $class = "\\aplication\\controllers\\loginController";
-                $controllers = new $class;
-                $controllers->indexFunction();
-
-                //exit(header("Location: /login.php?auth=false"));
-            //}
+            }
+            else header('Location: /login');
         }       
-        else echo 'Rota nao existente';
+        else header('Location: /login');
     }
+
     public function getURL(){
         return parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
     }
