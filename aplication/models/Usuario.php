@@ -24,7 +24,21 @@ class Usuario{
         $this->crud = new Crud();
         if($id) self::buscar_id($id);
     }
+    public function get_info(){
+        $resposta = new ReturnStatusNotification();
+        $resposta->set_data(array(
+            'id' => $this->id,
+            'nome'  => $this->nome,
+            'email'  => $this->email,
+            'telefone'  => $this->telefone,
+            'id_permissao'  => $this->id_permissao,
+        ));
+        return $resposta->get_notification();
+    }
 
+    /**
+     * Validação dos campos para inserção e atualizações de usuarios
+     */
     public function validate($id,$data,$id_permissao){
         $retorno = new ReturnStatusNotification();
         $error = array();
@@ -57,6 +71,9 @@ class Usuario{
         return $retorno->get_notification();
     }
 
+    /**
+     * Função para remover caracteres especiais da mascara do campo telefone
+     */
     public function format_tel($telefone){
         $array_replace = array('(',')',' ','-');
         return str_replace($array_replace,'',$telefone);
@@ -91,8 +108,28 @@ class Usuario{
         return $resposta->get_notification();
     }
 
+    /**
+     * Função que busca um usuario e alimenta objeto
+     */
     public function buscar_id($id){
+        $resposta = new ReturnStatusNotification();
         $query = "SELECT id,nome,email,senha,telefone,id_permissao FROM usuario WHERE id = $id;";
+
+        $result = $this->crud->query($query);
+        if($result['status'] && count($result['data']) > 0){
+            foreach ($result['data'] as $key => $value) {
+                $this->id = $value['id'];
+                $this->nome = $value['nome'];
+                $this->email = $value['email'];
+                $this->senha = null;
+                $this->telefone = $value['telefone'];
+                $this->id_permissao = $value['id_permissao'];
+            }
+        }else{
+            $resposta->set_status(false);
+            $resposta->set_mensagem_status('Não encontrado!');
+        }
+        return $resposta->get_notification();
     }
 
     public function buscar_email($email,$id_ignorar){
@@ -111,6 +148,34 @@ class Usuario{
         }else{
             $resposta->set_status(false);
             $resposta->set_mensagem_status('Não encontrado!');
+        }
+        return $resposta->get_notification();
+    }
+
+    public function buscar_clientes(){
+        $resposta = new ReturnStatusNotification();
+
+        $query = "SELECT R.id_atendente,R.id_cliente,C.nome as nome_cliente FROM relacionamentos R LEFT JOIN usuario C ON(C.id = R.id_cliente) WHERE R.id_atendente = $this->id";
+        $result = $this->crud->query($query);
+        if($result['status'] && count($result['data']) > 0)
+            $resposta->set_data($result['data']);
+        else{
+            $resposta->set_status(false);
+            $resposta->set_mensagem_status('Nenhum cliente!');
+        }
+        return $resposta->get_notification();
+    }
+
+    public function buscar_conversa($id_atendente,$id_cliente){
+        $resposta = new ReturnStatusNotification();
+
+        $query = "SELECT M.*,U.nome FROM mensagens M LEFT JOIN usuario U ON(U.id = M.id_envia) WHERE M.id_relacionamento = (SELECT R.id FROM relacionamentos R WHERE R.id_atendente = $id_atendente AND R.id_cliente = $id_cliente)";
+        $result = $this->crud->query($query);
+        if($result['status'] && count($result['data']) > 0)
+            $resposta->set_data($result['data']);
+        else{
+            $resposta->set_status(false);
+            $resposta->set_mensagem_status('Nenhum cliente!');
         }
         return $resposta->get_notification();
     }

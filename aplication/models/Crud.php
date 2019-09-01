@@ -55,7 +55,10 @@ class Crud{
     public function update(){}
     public function select_all(){}
     public function delete(){}
-    
+
+    /**
+     * Função que chama a função query da conexao para executar todas as querys
+     */
     public function query($query){
         $result = $this->con->query($query);
         $resposta = new ReturnStatusNotification();

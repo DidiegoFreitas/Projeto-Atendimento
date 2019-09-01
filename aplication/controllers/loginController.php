@@ -6,6 +6,7 @@ use aplication\models\Usuario;
 use aplication\helpers\ReturnStatusNotification;
 
 class loginController{
+
     public function autenticacao(){
         include 'aplication//views//login//index.php';
     }
@@ -35,13 +36,6 @@ class loginController{
             }
         }
         echo $resposta->get_notification(true);
-    }
-
-    public function logout(){
-        echo '<pre>';
-        var_dump($_SERVER);die;
-        
-        //unset($_SESSION['usuario']);
     }
 
     public function cadastro(){

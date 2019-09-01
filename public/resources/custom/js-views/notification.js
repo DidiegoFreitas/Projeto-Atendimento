@@ -1,10 +1,11 @@
-function notification(title,mensagem,text_buttom = 'Ok',tipo = 'success') {
+function notification(title,mensagem,text_buttom = 'Ok',tipo = 'success',reload = false) {
     swal({
         title: title,
         text: mensagem,
         icon: tipo,
         button: text_buttom,
       }).then((value) => {
-          return true;
+          if(reload == true) location.reload();
+          else return true;
       });
 }

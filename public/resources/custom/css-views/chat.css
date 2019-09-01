@@ -30,6 +30,14 @@
 }
 .panel-chat{
     border-left: 1px solid #dddddd;
+    height: 100%;
+}
+.panel-chat .panel.panel-default{
+    display: none;
+}
+.panel-chat .panel.panel-default.show{
+    display: block;
+    margin-bottom: 0px;
 }
 .panel-clientes{
     border-top: 1px solid #dddddd;
@@ -39,4 +47,17 @@
     padding-bottom: 0px;
     border-bottom: 1px solid #dddddd;
     border-top: 1px solid #dddddd;
+}
+.panel-info.panel-body.card-cliente{
+    cursor: pointer;
+}
+.panel-info.panel-body.card-cliente:hover{
+    background-color: #efefef;
+}
+.panel-info.panel-body.card-cliente.active{
+    background-color: #bce8f1;
+}
+.text_data_msg{
+    font-size: 10px;
+    font-style: italic;
 }

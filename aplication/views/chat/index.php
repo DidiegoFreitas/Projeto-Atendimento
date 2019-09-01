@@ -1,24 +1,22 @@
 <?php include $this->header;?>
 
-<link rel="stylesheet" href="../../public/resources/custom/css-views/index.css">
-<link rel="stylesheet" href="../../public/resources/custom/css-views/chat.css">
+<link rel="stylesheet" href="../../public/resources/custom/css-views/index.css?rand=<?=rand(1,99)?>">
+<link rel="stylesheet" href="../../public/resources/custom/css-views/chat.css?rand=<?=rand(1,99)?>">
 <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
-<script src="../../public/resources/custom/js-views/chat_pusher.js"></script>
-<script src="../../public/resources/custom/js-views/create_chat.js"></script>
+<script src="../../public/resources/custom/js-views/chat_pusher.js?rand=<?=rand(1,99)?>"></script>
+<script src="../../public/resources/custom/js-views/create_chat.js?rand=<?=rand(1,99)?>"></script>
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">Botão de navegação</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">Inicio</a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!--ul class="nav navbar-nav">
                 <li class=""><a href="#">Link <span class="sr-only">(current)</span></a></li>
@@ -53,22 +51,8 @@
     </div><!-- /.container-fluid -->
 </nav>
 
-<h1>Pusher</h1>
-<div><p><?=json_encode($_SESSION);?></p></div>
 <div id="container_chat" class="col-xs-12 col-sm-12 col-md-12 container_chat"></div>
 
-<script>
-    var id_user = '<?=rand(1,3);?>';
-    /*console.log(id_user);
-    var container_chat = $('#container_chat');
-    crate_connection(id_user);
-    container_chat.append(create_chat());
-    container_chat.on('submit','#form_mensagem',function (e) {
-        e.preventDefault();
-        send_mensage(id_user,'2',$('#input_send_mensagem').val());
-    });*/
-</script>
-<script src="../../public/resources/custom/js-views/conf_channel.js"></script>
-
+<script src="../../public/resources/custom/js-views/chat.js?rand=<?=rand(1,99)?>"></script>
 
 <?php include $this->header;?>

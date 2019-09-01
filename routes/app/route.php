@@ -21,6 +21,9 @@ class Route{
         $this->routes['/login/verificacao'] = array('controllers'=>'loginController','action'=>'verificacao');
 
         $this->routes_authentication['/chat'] = array('controllers'=>'chatController','action'=>'index');
+        $this->routes_authentication['/chat/user'] = array('controllers'=>'chatController','action'=>'get_user');
+        $this->routes_authentication['/chat/send'] = array('controllers'=>'chatController','action'=>'sendMensagem');
+        $this->routes_authentication['/chat/conversa'] = array('controllers'=>'chatController','action'=>'get_conversa');
     }
 
     protected function run($url){
