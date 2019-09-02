@@ -1,7 +1,6 @@
 # Projeto-Atendimento
 
-# iniciar projeto
-
+# Introdução
 Este protótipo ainda esta e fase de desenvolvimento porem ja é possivel utilizar o chat para simular um dialogo em realtime com dois usuarios `é preciso estar logado para poder acessar o chat`.
 
 Tecnologia ultilizada para o chat:
@@ -11,15 +10,17 @@ Tecnologia ultilizada para o chat:
 - `Apache 2.4`
 - `PHP 7.2 (sem framework)`
 
-# Usuarios cadastrados
+# Usuarios pre-cadastrados
 
 - `Atendente_1 (login:atendente_1@gmail.com,senha:1234)`
 - `Atendente_2 (login:atendente_2@gmail.com,senha:1234)`
 - `Cliente_1 (login:cliente_1@gmail.com,senha:1234)`
 - `Cliente_2 (login:cliente_2@gmail.com,senha:1234)`
 
-Requisitos:
+# Requisitos:
 -`instalação do docker [https://docs.docker.com/install/]`
+
+# Iniciar projeto
 
 Execute na raiz do projeto 
 - `./iniciar_projeto.sh`
