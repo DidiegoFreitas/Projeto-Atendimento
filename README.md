@@ -39,4 +39,4 @@ Para acessar o banco mysql use:
 
 - `docker-compose exec db mysql -u root -p` 
 
-Objetivo do projeto é a aquisição de conhecimento nas tecnologias ultilizadas sem a ultilicação de frameworks!
+Objetivo do projeto é a aquisição de conhecimento nas tecnologias utilizadas sem a utilicação de frameworks!
