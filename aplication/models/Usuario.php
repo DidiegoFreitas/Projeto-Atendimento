@@ -24,6 +24,7 @@ class Usuario{
         $this->crud = new Crud();
         if($id) self::buscar_id($id);
     }
+
     public function get_info(){
         $resposta = new ReturnStatusNotification();
         $resposta->set_data(array(
@@ -34,6 +35,21 @@ class Usuario{
             'id_permissao'  => $this->id_permissao,
         ));
         return $resposta->get_notification();
+    }
+    public function get_id(){
+        return $this->id;
+    }
+    public function get_nome(){
+        return $this->nome;
+    }
+    public function get_email(){
+        return $this->email;
+    }
+    public function get_telefone(){
+        return $this->telefone;
+    }
+    public function get_id_permissao(){
+        return $this->id_permissaoe;
     }
 
     /**
@@ -168,14 +184,39 @@ class Usuario{
 
     public function buscar_conversa($id_atendente,$id_cliente){
         $resposta = new ReturnStatusNotification();
-
-        $query = "SELECT M.*,U.nome FROM mensagens M LEFT JOIN usuario U ON(U.id = M.id_envia) WHERE M.id_relacionamento = (SELECT R.id FROM relacionamentos R WHERE R.id_atendente = $id_atendente AND R.id_cliente = $id_cliente)";
+        $query = "SELECT M.*,U.nome FROM mensagens M LEFT JOIN usuario U ON(U.id = M.id_envia) WHERE M.id_relacionamento = (SELECT R.id FROM relacionamentos R WHERE R.id_atendente = $id_atendente AND R.id_cliente = $id_cliente) ORDER BY M.data_mensagem;";
         $result = $this->crud->query($query);
         if($result['status'] && count($result['data']) > 0)
             $resposta->set_data($result['data']);
         else{
             $resposta->set_status(false);
-            $resposta->set_mensagem_status('Nenhum cliente!');
+            $resposta->set_mensagem_status('Nenhuma conversa!');
+        }
+        return $resposta->get_notification();
+    }
+
+    public function buscar_conversa_cliente($id_cliente){
+        $resposta = new ReturnStatusNotification();
+        $query = "SELECT M.*,U.nome FROM mensagens M LEFT JOIN usuario U ON(U.id = M.id_envia) WHERE M.id_relacionamento = (SELECT R.id FROM relacionamentos R WHERE R.id_cliente = $id_cliente) ORDER BY M.data_mensagem;";
+        $result = $this->crud->query($query);
+        if($result['status'] && count($result['data']) > 0)
+            $resposta->set_data($result['data']);
+        else{
+            $resposta->set_status(false);
+            $resposta->set_mensagem_status('Nenhuma mensagem!');
+        }
+        return $resposta->get_notification();
+    }
+
+    public function lista(){
+        $resposta = new ReturnStatusNotification();
+        $query = "SELECT U.id,U.nome,COUNT(R.id) AS qtd FROM usuario U LEFT JOIN relacionamentos R ON(U.id = R.id_atendente) WHERE id_permissao = 2 GROUP BY U.id,U.nome";
+        $result = $this->crud->query($query);
+        if($result['status'] && count($result['data']) > 0){
+            $resposta->set_data($result['data']);
+        }else{
+            $resposta->set_status(false);
+            $resposta->set_mensagem_status('Não encontrado!');
         }
         return $resposta->get_notification();
     }

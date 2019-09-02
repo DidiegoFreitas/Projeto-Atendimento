@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS usuario (
     senha VARCHAR(32) NOT NULL,
     telefone VARCHAR(15),
     id_permissao INT(11) NOT NULL,
+    ativo BOOLEAN NOT NULL DEFAULT TRUE,
     PRIMARY KEY (id),
     FOREIGN KEY fk_usuario_permissao (id_permissao) REFERENCES permissao(id) ON UPDATE CASCADE ON DELETE RESTRICT
 );

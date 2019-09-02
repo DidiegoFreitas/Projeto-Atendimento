@@ -3,8 +3,10 @@
 namespace aplication\helpers;
 
 use aplication\helpers\ReturnStatusNotification;
+use Pusher;
 
 class MensagemPusher{
+
     function __construct($channel = false,$event = false,$data = false){
         if($channel && $event && $data){
             $retorno = self::send($channel,$event,$data);
@@ -17,7 +19,7 @@ class MensagemPusher{
         $resposta = new ReturnStatusNotification();
 
         if($channel != '' && $event != '' && count($data) > 0){
-            require '../../vendor/autoload.php';
+            require 'vendor/autoload.php';
 
             $app_id = '848966';
             $key = '3c8e93a6f7612e82df8c';
@@ -38,13 +40,14 @@ class MensagemPusher{
         return $resposta->get_notification();
     }
 
-    public function padrao_mensagem($id_origem,$id_destino,$conteudo,$date = false){
+    public function padrao_mensagem($nome_origem,$id_origem,$id_destino,$conteudo,$date = false){
         $resposta = new ReturnStatusNotification();
 
         if($id_origem && $id_destino && $conteudo != ''){
-            if(!$date) $date = date('d/m/Y H:i:s');
+            if(!$date) $date = date('Y-m-d H:i:s');
             $send = array(
                 'origem' => $id_origem,
+                'nome_origem' => $nome_origem,
                 'destino' => $id_destino,
                 'mensagem' => $conteudo,
                 'data_envio' => $date

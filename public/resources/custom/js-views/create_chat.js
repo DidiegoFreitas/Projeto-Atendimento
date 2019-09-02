@@ -11,22 +11,22 @@ function create_mensage_my(nome,data_hora,mensagem) {
 function create_mensage_you(nome,data_hora,mensagem = '') {
     var mensagem_right = $('<div/>').addClass('panel panel-success panel-body chat-right')
         .append($('<div/>').addClass('row').data('id', 'mensagem')
-            .append($('<div/>').addClass('col-xs-8 col-sm-8 col-md-8 pull-left').html(nome))
-            .append($('<div/>').addClass('col-xs-4 col-sm-4 col-md-4 pull-right text-right text_data_msg').html(data_hora))
-            .append($('<div/>').addClass('col-xs-12 col-sm-12 col-md-12 pull-left').html(mensagem))
+            .append($('<div/>').addClass('col-xs-8 col-sm-8 col-md-8 pull-left').text(nome))
+            .append($('<div/>').addClass('col-xs-4 col-sm-4 col-md-4 pull-right text-right text_data_msg').text(data_hora))
+            .append($('<div/>').addClass('col-xs-12 col-sm-12 col-md-12 pull-left').text(mensagem))
             );
     return mensagem_right;
 }
 
 function create_card_cliente(id,nome,ultima_msg) {
     var html = $('<div/>').addClass('panel panel-info panel-body card-cliente')
-                .append($('<input/>').attr('type','hidden').data('data-id-cliente',id))
-                .append($('<div/>').addClass('col-xs-12 col-sm-12 col-md-12 row').text(nome))
+                .append($('<input/>').attr('type','hidden').attr('id','input_destino_espera').data('data-id-cliente',id))
+                .append($('<div/>').addClass('col-xs-12 col-sm-12 col-md-12 row title_cliente').text(nome))
                 .append($('<div/>').addClass('col-xs-12 col-sm-12 col-md-12 row').text(ultima_msg));
     return html;
 }
 
-function create_chat_html(clientes = false) {
+function create_chat_html(permissao,clientes = false) {
     var chat = $('<div/>').addClass('row container_chat_row');
     
     var panel_clientes = $('<div/>').addClass('panel-body');
@@ -62,7 +62,8 @@ function create_chat_html(clientes = false) {
                     )
                 )
             );
+    if(permissao == 3) chat.append(painel_chat);
+    else chat.append(painel_espera).append(painel_chat);
 
-    chat.append(painel_espera).append(painel_chat);
     return chat;
 }

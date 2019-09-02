@@ -11,25 +11,14 @@ class indexController{
     protected $cdn_css_view;
 
     private $title_page = 'Inicio';
-    private $header;
-    private $footer;
     
     public function get_title_page(){
         return $this->title_page;
     }
     public function inicial(){
-        $this->render('index.php',self::template_view,true);
+        $this->render('welcome.php',self::template_view,true);
     }
 
-    public function chatFunction(){
-        $this->header = 'aplication//templates//header.php';
-        $this->footer = 'aplication//templates//footer.php';
-        include 'aplication//views//index//chat.php';
-    }
-    public function sendFunction(){
-        //var_dump('teste');
-        
-    }
 
     public function content_cdn(){
         include self::dir_template . 'cdn_css.php';

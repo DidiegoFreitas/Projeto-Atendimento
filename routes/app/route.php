@@ -24,6 +24,8 @@ class Route{
         $this->routes_authentication['/chat/user'] = array('controllers'=>'chatController','action'=>'get_user');
         $this->routes_authentication['/chat/send'] = array('controllers'=>'chatController','action'=>'sendMensagem');
         $this->routes_authentication['/chat/conversa'] = array('controllers'=>'chatController','action'=>'get_conversa');
+        $this->routes_authentication['/chat/conversa_cliente'] = array('controllers'=>'chatController','action'=>'get_conversa_cliente');
+        $this->routes_authentication['/chat/sendFirst'] = array('controllers'=>'chatController','action'=>'sendPrimeiraMensagem');
     }
 
     protected function run($url){

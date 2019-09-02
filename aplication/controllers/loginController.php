@@ -52,7 +52,8 @@ class loginController{
             foreach ($data as $key => $fields) 
                 $form[0][$fields['name']] = $fields['value'];
             $usuario = new Usuario();
-            $retorno = $usuario->criar($form,0);
+            $usuario->criar($form,0);
+            $retorno = $usuario->salvar();
 
             $resposta->set_status($retorno['status']);
             $resposta->set_mensagem_status($retorno['mensagem_status']);

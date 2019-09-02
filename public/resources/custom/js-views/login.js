@@ -113,8 +113,8 @@ $(document).ready(function(){
                             form.find('div[data-identification="'+indice+'"]').text(msg).addClass('show');
                         });
                     }else if(retorno['status'] == true){
-                        var retorno_notificacao = notification('Concluído','Cadastro concluído!','Login');
-                        if(retorno_notificacao) $('#log-reg-show').click();
+                        var retorno_notificacao = notification('Concluído','Cadastro concluído!','Ok');
+                        $('#log-reg-show').click();
                     }
                 }
             });
