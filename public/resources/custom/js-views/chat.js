@@ -13,7 +13,7 @@ function create_chat(data) {
     crate_connection(data['usuario']['data']['id'],container_chat,data['usuario']['data']['id_permissao']);
 
     container_chat.append(create_chat_html(data['usuario']['data']['id_permissao'],data['clientes']));
-
+    
     if(data['usuario']['data']['id_permissao'] == 3){
         container_chat.find('.panel-chat .panel.panel-default').addClass('show');
         $.ajax({
@@ -61,6 +61,12 @@ function create_chat(data) {
                         container_chat.find('.panel-chat #caixa_mensagens').append(create_mensage_my('Você',v['data_mensagem'],v['conteudo']));                    
                     else
                         container_chat.find('.panel-chat #caixa_mensagens').append(create_mensage_you(v['nome'],v['data_mensagem'],v['conteudo']));
+                    
+                    
+                    container_chat.find('.panel-chat #caixa_mensagens').scrollTop(container_chat.find('.panel-chat #caixa_mensagens').height());
+
+    console.log(container_chat.find('.panel-chat #caixa_mensagens').height());
+
                 });
             }
         });
